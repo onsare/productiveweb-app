@@ -1,7 +1,8 @@
 "use client";
 
-import { ArrowLeftSquare, ArrowRightSquare } from "lucide-react";
 import { useRef } from "react";
+import { ArrowLeftSquare, ArrowRightSquare } from "lucide-react";
+import { Link } from "react-router-dom";
 
 type DataItem = {
   id: number;
@@ -34,7 +35,7 @@ const Banner = ({
   return (
     <div className='max-w-[1200px] mx-auto space-y-2'>
       <div className='flex justify-between'>
-        <h4>{title}</h4>
+        <h4 className='font-bold'>{title}</h4>
         <div className='flex gap-4'>
           <button title='scroll left' onClick={slideLeft}>
             <ArrowLeftSquare />
@@ -50,18 +51,17 @@ const Banner = ({
         ref={sliderRef}
       >
         {data.map((item) => (
-          <div
-            key={item.id}
-            className={`w-${slideWidth} rounded-lg bg-slate-500 `}
-          >
-            <img
-              width={500}
-              height={500}
-              src={item.poster}
-              alt={item.title}
-              className=' w-48 h-[200px] rounded-lg object-contain'
-            />
-          </div>
+          <Link key={item.id} to='/another-page'>
+            <div className={`w-${slideWidth} rounded-lg bg-slate-500 `}>
+              <img
+                width={500}
+                height={500}
+                src={item.poster}
+                alt={item.title}
+                className=' w-48 h-[200px] rounded-lg object-contain'
+              />
+            </div>
+          </Link>
         ))}
       </div>
     </div>

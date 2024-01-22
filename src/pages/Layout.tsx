@@ -13,10 +13,16 @@ const Layout = () => {
         </div>
 
         <div className='flex items-center ml-auto'>
-          <Link to='/' className='text-blue-500 hover:underline mr-4'>
+          <Link
+            to='/'
+            className='text-purple-500 font-bold hover:underline mr-4'
+          >
             Home
           </Link>
-          <Link to='/profile' className='text-blue-500 hover:underline'>
+          <Link
+            to='/profile'
+            className='text-purple-500 font-bold hover:underline'
+          >
             Profile
           </Link>
         </div>

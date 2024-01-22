@@ -1,10 +1,6 @@
+import { CarouselItem } from "../api/homeApi";
 import Slider from "./Slider";
 
-interface CarouselItem {
-  id: number;
-  title: string;
-  imageUrl: string;
-}
 export interface CarouselProps {
   items: CarouselItem[];
 }

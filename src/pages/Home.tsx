@@ -1,81 +1,57 @@
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { HomepageData, getHomepageData } from "../api/homeApi";
+import {
+  selectHomeScreenData,
+  setHomeScreenData,
+} from "../store/slices/homeScreenSlice";
+
 import Banner from "../components/Banner";
 import Card from "../components/Card";
 import Carousel from "../components/Carousel";
 
-import Banner1 from "../assets/banner-bg-1.png";
-import Banner2 from "../assets/banner-bg-2.png";
-import Banner3 from "../assets/unsplash-banner.jpg";
-import project1 from "../assets/client-1.png";
-import project2 from "../assets/client-2.png";
-import project3 from "../assets/client-2.png";
-
-const carouselItems = [
-  {
-    id: 1,
-    title: "Item 1",
-    imageUrl: Banner1,
-  },
-  {
-    id: 2,
-    title: "Item 2",
-    imageUrl: Banner2,
-  },
-  {
-    id: 3,
-    title: "Item 3",
-    imageUrl: Banner3,
-  },
-];
-
-const projects = [
-  {
-    id: 1,
-    title: "Obli",
-    poster: project1,
-  },
-  {
-    id: 2,
-    title: "Obli",
-    poster: project2,
-  },
-  {
-    id: 3,
-    title: "Obli",
-    poster: project3,
-  },
-  {
-    id: 4,
-    title: "Obli",
-    poster: project1,
-  },
-  {
-    id: 5,
-    title: "Obli",
-    poster: project1,
-  },
-  {
-    id: 6,
-    title: "Obli",
-    poster: project1,
-  },
-  {
-    id: 7,
-    title: "Obli",
-    poster: project1,
-  },
-];
-
 const Home = () => {
+  const dispatch = useDispatch();
+
+  const homepageData = useSelector(selectHomeScreenData) as HomepageData[];
+
+  useEffect(() => {
+    //Simulatet Mock API call to fetch homepage data
+    const fetchData = async () => {
+      getHomepageData()
+        .then((data) => {
+          dispatch(setHomeScreenData(data.components));
+        })
+        .catch((err) => {
+          console.log("something went wrong", err);
+        });
+    };
+
+    fetchData();
+  }, [dispatch]);
+
+  const renderComponent = (item) => {
+    switch (item.type) {
+      case "carousel":
+        return <Carousel items={item.data} />;
+      case "banner":
+        return <Banner title='Projects' data={item.data} />;
+      case "data":
+        return <Card data={item.data[0]} />;
+
+      default:
+        return null;
+    }
+  };
+
   return (
     <>
-      <div className='mt-6'>
-        <Carousel items={carouselItems} />
-      </div>
-      <div className='mt-6'>
-        <Banner title='Projects' data={projects} />
-      </div>
-      <div className='mt-6'>
-        <Card />
+      <div>
+        {homepageData?.map((component: HomepageData, index: number) => (
+          <div className='mt-6' key={index}>
+            {renderComponent(component)}
+          </div>
+        ))}
       </div>
     </>
   );
