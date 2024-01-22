@@ -61,11 +61,11 @@ const Home = () => {
       case "data":
         return (
           <Suspense fallback={<div>Loading...</div>}>
-            <div className='flex w-full gap-4'>
-              <div className='w-1/2'>
+            <div className='md:flex w-full gap-4'>
+              <div className='w-full  md:w-1/2'>
                 <LazyCard data={component.data[0] as DataComponentItem} />
               </div>
-              <div className='w-1/2'>
+              <div className='w-full md:w-1/2'>
                 <LazyCard data={component.data[0] as DataComponentItem} />
               </div>
             </div>
