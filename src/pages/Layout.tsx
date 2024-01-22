@@ -1,16 +1,15 @@
 import { Link, Outlet } from "react-router-dom";
 
+import Logo from "../assets/logo.png";
+
 const Layout = () => {
   return (
     <>
       <nav className='flex bg-white shadow-lg p-4'>
         <div className='flex items-center'>
-          {/* <img
-            src='path/to/your/logo.png'
-            alt='Logo'
-            className='w-8 h-8 mr-2'
-          /> */}
-          <span className='text-lg font-semibold'>Productive</span>
+          <Link to='/'>
+            <img src={Logo} alt='Logo' className='w-48' />
+          </Link>
         </div>
 
         <div className='flex items-center ml-auto'>
