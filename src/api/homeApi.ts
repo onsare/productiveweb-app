@@ -108,7 +108,7 @@ export interface BannerItem {
   id: number;
   poster: string;
   title: string;
-  buttonText: string;
+  buttonText?: string;
   action: string;
 }
 
@@ -116,7 +116,7 @@ export interface DataComponentItem {
   avatar: string;
   image: string;
   username: string;
-  action: string;
+  action?: string;
   excerpt: string;
 }
 

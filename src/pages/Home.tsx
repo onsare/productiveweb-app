@@ -1,6 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { HomepageData, getHomepageData } from "../api/homeApi";
+import {
+  BannerItem,
+  CarouselItem,
+  DataComponentItem,
+  HomeComponent,
+  getHomepageData,
+} from "../api/homeApi";
 import {
   selectHomeScreenData,
   setHomeScreenData,
@@ -10,13 +16,18 @@ import Banner from "../components/Banner";
 import Card from "../components/Card";
 import Carousel from "../components/Carousel";
 
+export interface HomePageData {
+  type: string;
+  data: HomeComponent;
+}
+
 const Home = () => {
   const dispatch = useDispatch();
 
-  const homepageData = useSelector(selectHomeScreenData) as HomepageData[];
+  const homepageData = useSelector(selectHomeScreenData) as HomePageData[];
 
   useEffect(() => {
-    //Simulatet Mock API call to fetch homepage data
+    // Simulate Mock API call to fetch homepage data
     const fetchData = async () => {
       getHomepageData()
         .then((data) => {
@@ -30,14 +41,16 @@ const Home = () => {
     fetchData();
   }, [dispatch]);
 
-  const renderComponent = (item) => {
-    switch (item.type) {
+  const renderComponent = (component: HomePageData) => {
+    switch (component.type) {
       case "carousel":
-        return <Carousel items={item.data} />;
+        return <Carousel items={component.data as CarouselItem[]} />;
       case "banner":
-        return <Banner title='Projects' data={item.data} />;
+        return (
+          <Banner title='Projects' data={component.data as BannerItem[]} />
+        );
       case "data":
-        return <Card data={item.data[0]} />;
+        return <Card data={component.data[0] as DataComponentItem} />;
 
       default:
         return null;
@@ -46,13 +59,13 @@ const Home = () => {
 
   return (
     <>
-      <div>
-        {homepageData?.map((component: HomepageData, index: number) => (
+      {homepageData?.map((component: HomePageData, index: number) => {
+        return (
           <div className='mt-5' key={index}>
             {renderComponent(component)}
           </div>
-        ))}
-      </div>
+        );
+      })}
     </>
   );
 };
