@@ -52,13 +52,13 @@ const Banner = ({
       >
         {data.map((item) => (
           <Link key={item.id} to='/another-page'>
-            <div className={`w-${slideWidth} rounded-lg bg-slate-500 `}>
+            <div
+              className={`w-${slideWidth} w-[200px] rounded-lg bg-slate-500 flex-shrink-0 `}
+            >
               <img
-                width={500}
-                height={500}
                 src={item.poster}
                 alt={item.title}
-                className=' w-48 h-[200px] rounded-lg object-contain'
+                className=' w-48 h-[200px] rounded-lg bg-slate-500 object-scale-down '
               />
             </div>
           </Link>

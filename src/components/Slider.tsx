@@ -10,23 +10,22 @@ const SliderComponent = ({ items }: CarouselProps) => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 2,
+    slidesToShow: 1,
     slidesToScroll: 2,
     autoplay: true,
   };
   return (
     <Slider {...settings}>
       {items.map((item) => (
-        <div key={item.id} className='h-56 rounded-lg w-full p-2'>
+        <div key={item.id} className='md:h-[20rem] rounded-lg w-full '>
           <img
-            height={500}
             src={item.imageUrl}
             alt={item.title}
-            className='w-full h-56 rounded-lg '
+            className='w-full  rounded-lg object-cover '
           />
           <Link to='/another-page'>
-            <button className='bg-purple-500 p-4 rounded-lg min-w-[200px] font-bold text-white absolute bottom-[4px] m-6 flex justify-between'>
-              View - {item.title} <ArrowRight />
+            <button className='bg-purple-500 p-2 md:p-4 rounded-lg  md:min-w-[200px] font-bold text-white absolute bottom-[50px] m-6 flex justify-between'>
+              See {item.title} <ArrowRight />
             </button>
           </Link>
         </div>

@@ -15,7 +15,11 @@ const Card = ({ data }: { data: DataComponentItem }) => {
       </div>
       <div className='mt-6'>
         <h2 className='text-purple-500 font-bold text-[25px]'>Our Story</h2>
-        <img src={data.image} alt='' className='w-full h-[300px] object-fill' />
+        <img
+          src={data.image}
+          alt=''
+          className='w-full h-[300px] object-fill rounded-lg'
+        />
         <p className='mt-6'>{data.excerpt}</p>
       </div>
       <Link to='/another-page'>

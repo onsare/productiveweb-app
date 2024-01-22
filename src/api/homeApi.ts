@@ -81,6 +81,34 @@ const generateBannerData = (): BannerItem[] => {
       action: "highlightAction",
       buttonText: "",
     },
+    {
+      id: 4,
+      title: "View Offers",
+      poster: project1,
+      action: "highlightAction",
+      buttonText: "",
+    },
+    {
+      id: 5,
+      title: "View Offers",
+      poster: project2,
+      action: "highlightAction",
+      buttonText: "",
+    },
+    {
+      id: 6,
+      title: "View Offers",
+      poster: project3,
+      action: "highlightAction",
+      buttonText: "",
+    },
+    {
+      id: 7,
+      title: "View Offers",
+      poster: project1,
+      action: "highlightAction",
+      buttonText: "",
+    },
   ];
 };
 
