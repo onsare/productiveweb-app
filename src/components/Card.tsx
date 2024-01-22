@@ -20,7 +20,7 @@ const Card = ({ data }: { data: DataComponentItem }) => {
           alt=''
           className='w-full h-[300px] object-fill rounded-lg'
         />
-        <p className='mt-6'>{data.excerpt}</p>
+        <p className='mt-6 text-gray-500'>{data.excerpt}</p>
       </div>
       <Link to='/another-page'>
         <button className='bg-purple-500 p-4 rounded-lg min-w-[200px] font-bold text-white  mt-6 flex justify-between'>

@@ -29,6 +29,10 @@ const Layout = () => {
       </nav>
 
       <Outlet />
+
+      <footer className='m-10 text-center'>
+        <p>&copy; 2024. Productive App</p>
+      </footer>
     </>
   );
 };

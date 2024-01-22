@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import {
   BannerItem,
   CarouselItem,
@@ -12,9 +12,9 @@ import {
   setHomeScreenData,
 } from "../store/slices/homeScreenSlice";
 
-import Banner from "../components/Banner";
-import Card from "../components/Card";
-import Carousel from "../components/Carousel";
+const LazyBanner = React.lazy(() => import("../components/Banner"));
+const LazyCard = React.lazy(() => import("../components/Card"));
+const LazyCarousel = React.lazy(() => import("../components/Carousel"));
 
 export interface HomePageData {
   type: string;
@@ -44,13 +44,33 @@ const Home = () => {
   const renderComponent = (component: HomePageData) => {
     switch (component.type) {
       case "carousel":
-        return <Carousel items={component.data as CarouselItem[]} />;
+        return (
+          <Suspense fallback={<div>Loading...</div>}>
+            <LazyCarousel items={component.data as CarouselItem[]} />
+          </Suspense>
+        );
       case "banner":
         return (
-          <Banner title='Projects' data={component.data as BannerItem[]} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <LazyBanner
+              title='Projects'
+              data={component.data as BannerItem[]}
+            />
+          </Suspense>
         );
       case "data":
-        return <Card data={component.data[0] as DataComponentItem} />;
+        return (
+          <Suspense fallback={<div>Loading...</div>}>
+            <div className='flex w-full gap-4'>
+              <div className='w-1/2'>
+                <LazyCard data={component.data[0] as DataComponentItem} />
+              </div>
+              <div className='w-1/2'>
+                <LazyCard data={component.data[0] as DataComponentItem} />
+              </div>
+            </div>
+          </Suspense>
+        );
 
       default:
         return null;
