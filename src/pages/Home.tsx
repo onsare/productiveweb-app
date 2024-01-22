@@ -48,7 +48,7 @@ const Home = () => {
     <>
       <div>
         {homepageData?.map((component: HomepageData, index: number) => (
-          <div className='mt-6' key={index}>
+          <div className='mt-5' key={index}>
             {renderComponent(component)}
           </div>
         ))}
